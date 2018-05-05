@@ -1,0 +1,52 @@
+@font-face {
+	font-family: 'Canter';
+	src: url('CanterBold.eot');
+	src: url('CanterBold.eot?#iefix') format('embedded-opentype'),
+		url('CanterBold.woff') format('woff'),
+		url('CanterBold.ttf')  format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'CanterShadow';
+	src: url('CanterBoldShadow.eot');
+	src: url('CanterBoldShadow.eot?#iefix') format('embedded-opentype'),
+		url('CanterBoldShadow.woff') format('woff'),
+		url('CanterBoldShadow.ttf')  format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Canterlight';
+	src: url('CanterLight.eot');
+	src: url('CanterLight.eot?#iefix') format('embedded-opentype'),
+		url('CanterLight.woff') format('woff'),
+		url('CanterLight.ttf')  format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'AWConquerorSans';
+	src: url('AWConquerorSans-Light.eot');
+	src: url('AWConquerorSans-Light.eot?#iefix') format('embedded-opentype'),
+		url('AWConquerorSans-Light.woff') format('woff'),
+		url('AWConquerorSans-Light.ttf')  format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+
+.h1-canter { font-family: 'Canter', Tahoma, Geneva, sans-serif; }
+.canter-menu { font-family: 'Canter', Tahoma, Geneva, sans-serif; font-size: 24px; color:#613E06;}
+.canter-bold { font-family: 'Canter', Tahoma, Geneva, sans-serif; font-size: 44px; }
+.canter-bold-shadow-title { font-family: 'CanterShadow',Tahoma, Geneva, sans-serif; font-size: 54px;}
+.canter-bold-shadow-title1 { font-family: 'CanterShadow',Tahoma, Geneva, sans-serif; font-size: 54px; color:black}
+.canter-bold-shadow-title2 { font-family: 'Canter',Tahoma, Geneva, sans-serif; font-size: 54px; color:black}
+.canter-bold-shadow-title3 { font-family: 'CanterShadow',Tahoma, Geneva, sans-serif; font-size: 54px; color:#613E06;}
+.canter-bold-shadow-title4 { font-family: 'Canter',Tahoma, Geneva, sans-serif; font-size: 54px; color:#613E06;}
+.canter-light-footer{ font-family: 'Canterlight', Tahoma, Geneva, sans-serif;font-size: 30px; }
+
+.aw-conqueror { font-family: 'AWConquerorSans', Tahoma, Geneva, sans-serif; font-size: 16px;}

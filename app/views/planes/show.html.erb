@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+<div class="well">
+  <p>
+    <h2><strong>Tipo:</strong></h2>
+    <%= @plane.tipo %>
+  </p>
+</div>
+<div class="well">
+  <p>
+    <h2><strong>Texto:</strong></h2>
+    <%= @plane.texto %>
+  </p>
+</div>
+<%= link_to 'Editar', edit_plane_path(@plane), class: "btn btn-warning" %>
+<%= link_to 'Atrás', planes_path, class: "btn btn-default" %>

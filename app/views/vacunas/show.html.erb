@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div class="container-fluid">
+    <%= link_to 'Atrás', vacunas_path(@vacuna.mascota_id), class: 'btn btn-default' %>
+  <p>
+    <strong>Nombre:</strong>
+    <%= @vacuna.nombre %>
+  </p>
+
+  <p>
+    <strong>Mascota:</strong>
+    <%= nombre_mascota(@vacuna.mascota_id) %>
+  </p>
+
+  <p>
+    <strong>Fecha:</strong>
+    <%= @vacuna.created_at %>
+  </p>
+
+
+</div>

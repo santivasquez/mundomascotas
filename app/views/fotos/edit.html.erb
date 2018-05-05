@@ -1,0 +1,15 @@
+<h1>Editar Foto</h1>
+<div class="container-fluid">
+        <div class="row">
+            <%= render 'form' %>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 col-xs-12 col-sm-12">
+                    <%= link_to 'Mostrar', @foto, class: "btn btn-warning" %> 
+                    <%= link_to 'Atrás', menu_foto_path, class: "btn btn-default" %>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+</div>  
+

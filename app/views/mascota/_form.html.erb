@@ -1,0 +1,53 @@
+<%= form_for(@mascotum) do |f| %>
+  <% if @mascotum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mascotum.errors.count, "error") %> Errores encontrados:</h2>
+
+      <ul>
+      <% @mascotum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id_Mas %><br>
+    <%= f.text_field :id_Mas, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :required => true %>
+  </div>
+  <div class="field">
+    <%= f.label :dueño %><br>
+    <%= f.collection_select(:dueño, @usuarios, :id, :correo) %>
+  </div>
+  <div class="field">
+    <%= f.label :entrada %><br>
+    <%= select_date Date.today, prefix: :entrada %>
+  </div>
+  <div class="field">
+    <%= f.label :salida %><br>
+    <%= select_date Date.today, prefix: :salida %>
+  </div>
+  <div class="field">
+    <%= f.label :vacunas %><br>
+    <%= f.check_box :vacunas %>
+  </div>
+  <div class="field">
+    <%= f.label :raza %><br>
+    <%= f.text_field :raza, :required => true %>
+  </div>
+  <div class="field">
+      <%= f.label :edad %><br>
+    <%= f.number_field :edad %>
+  </div>
+  <div class="field">
+    <%= f.label :estado %><br>
+    <%= f.select(:estado, options_for_select([['Reproductivo', 'Reproductivo'], ['Esterilizado', 'Esterilizado'],['Entero','Entero' ]], 'Reproductivo'), required: "true" ) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Crear Mascota', class: "btn btn-primary" %>
+  </div>
+<% end %>

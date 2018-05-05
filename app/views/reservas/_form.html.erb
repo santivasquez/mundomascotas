@@ -1,0 +1,70 @@
+
+
+     <%= form_for(@reserva) do |f| %>
+  <% if @reserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+      <% @reserva.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="row">
+  <div id="div-reserva" class="col-xs-12">
+    <h2>Información</h2> 
+
+    <div class="field">
+      <%= f.label :estado %><br>
+       <%= f.select(:estado, options_for_select([['Pendiente', 'pendiente'], ['Confirmado', 'confirmado'],['En espera','en espera' ],['Terminado','terminado' ] ], 'Pendiente'), required: "true" ) %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :usuario_id %><br>
+      <%= f.collection_select(:usuario_id, @usuarios, :id, :correo) %>
+    </div>
+     <div class="field">
+      <%= f.label :mascota_id %><br>
+      <%= f.collection_select(:mascota_id, @mascotas, :id, :nombre) %>
+    </div>
+      <div class="field">
+      <%= f.label :descripcion %><br>
+      <%= f.text_area :descripcion, rows: '7' %>
+    </div>
+    <div class="field">
+        <%= f.label :fecha_entrada %><br>
+        <%= f.text_field :fecha_entrada, class: 'form-control', placeholder: 'Fecha de entrada' %>
+                      <script>
+                          $(function () {
+                              $.datepicker.setDefaults($.datepicker.regional["es"]);
+                              $("#reserva_fecha_entrada").datepicker({
+                                  firstDay: 1
+                              });
+                          });
+                          </script>
+    </div>
+      <div class="field">
+          <%= f.label :fecha_salida %><br>
+          <%= f.text_field :fecha_salida, class: 'form-control', placeholder: 'Fecha de salida' %>
+                      <script>
+                          $(function () {
+                              $.datepicker.setDefaults($.datepicker.regional["es"]);
+                              $("#reserva_fecha_salida").datepicker({
+                                  firstDay: 1
+                              });
+                          });
+                          </script>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Crear Reserva', class: 'btn btn-primary' %>
+    </div>
+      <% end %>
+</div>
+</div>  
+    
+    
+    
+

@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="panel panel-info">
+      <div class="panel-heading">Importante</div>
+      <div class="panel-body">
+        Recuerde que primero debe crear tanto el usuario como la mascota en el sistema, de lo contrario,
+        no apareceran en este menú
+      </div>
+    </div>
+    <div class="span3 well">
+        <h1 class="text-center">Reserva Nueva</h1>
+        <%= render 'form' %>
+        <%= link_to 'Atrás', reservas_path, class: "btn btn-default" %>
+    </div>
+</div>

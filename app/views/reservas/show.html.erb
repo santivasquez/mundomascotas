@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @reserva.descripcion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @reserva.estado %>
+</p>
+
+<p>
+  <strong>Mascota:</strong>
+  <%= @reserva.mascota_id %>
+</p>
+
+<p>
+  <strong>Usuario:</strong>
+  <%= @reserva.usuario_id %>
+</p>
+
+<p>
+  <strong>Fecha Salida:</strong>
+  <%= @reserva.fecha_salida %>
+</p>
+<p>
+  <strong>Fecha Entrada:</strong>
+  <%= @reserva.fecha_entrada %>
+</p>
+<%= link_to 'Editar', edit_reserva_path(@reserva), class: "btn btn-large btn-default" %>
+
+<%= link_to 'Aceptar', reservas_path, class: "btn btn-large btn-default" %>

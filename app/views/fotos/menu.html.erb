@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de Fotos</h1>
+<%= link_to 'Foto nueva', new_foto_path, class: "btn btn-primary" %>||<%= link_to 'Mostrar album', fotos_path, class: "btn btn-info" %>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Imagen</th>
+        <th>Vista previa</th>
+        <th colspan="3">Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @fotos.each do |foto| %>
+        <tr>
+          <td><%= foto.imagen %></td>
+          <td> <img src=<%=foto.imagen%> alt="Error" height="100" width="150"/> </td>
+          <td><%= link_to 'Mostrar', foto, class: "btn btn-default" %></td>
+          <td><%= link_to 'Editar', edit_foto_path(foto), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Borrar', foto, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

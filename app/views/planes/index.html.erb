@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de Planes</h1>
+<%= link_to 'Plan nuevo', new_plane_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Texto</th>
+        <th colspan="3">Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @planes.each do |plane| %>
+        <tr>
+          <td><%= plane.tipo %></td>
+          <td><%= plane.texto %></td>
+          <td><%= link_to 'Mostrar', plane, class: "btn btn-default" %></td>
+          <td><%= link_to 'Editar', edit_plane_path(plane), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Borrar', plane, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

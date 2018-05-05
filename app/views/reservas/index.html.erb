@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<h1>Lista de Reservas</h1>
+<%= link_to 'Crear reserva', new_reserva_path, class: "btn btn-primary" %>
+
+<div class="table-responsive">
+    <table class="table">
+  <thead>
+    <tr>
+      <th>Descripción</th>
+      <th>Estado</th>
+      <th>Mascota</th>
+      <th>Usuario</th>
+      <th>Fecha Entrada</th>
+      <th>Fecha Salida</th>
+      <th colspan="3">Opciones</th>
+    </tr>
+      
+  </thead>
+
+  <tbody>
+      
+    <% @reservas.each do |reserva| %>
+          
+      <tr>
+        <td><%= reserva.descripcion %></td>
+        <td><%= reserva.estado %></td>
+        <td><%= idMas(reserva.mascota_id) %></td>
+        <td><%=  dueno_correo(reserva.usuario_id) %></td>
+        <td><%= reserva.fecha_entrada %></td>
+        <td><%= reserva.fecha_salida %></td>
+          <td><%= link_to 'Ver', reserva_path(reserva), class: "btn btn-default" %></td>
+          <td><%= link_to 'Editar', edit_reserva_path(reserva), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Eliminar', reserva, method: :delete, data: { confirm: '¿Está seguro que desea eliminar la reserva?' }, class: "btn btn-danger" %></td>
+      </tr>
+          
+    <% end %>
+      
+  </tbody>
+    </table>
+</div>

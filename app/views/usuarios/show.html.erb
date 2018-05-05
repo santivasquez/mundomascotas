@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <section id="nombre_usuario" >
+      <h1 class="text-center">
+        <%= gravatar_for @usuario %>
+        <%= @usuario.nombre %>
+      </h1>
+    </section>
+</div>
+<div class="row">
+  <div class="container">
+    <section id="info_usuario" >
+      <p>
+        <strong>Nombre:</strong>
+        <%= @usuario.nombre %>
+      </p>
+
+      <p>
+        <strong>Apellido:</strong>
+        <%= @usuario.apellido %>
+      </p>
+
+      <p>
+        <strong>Tipo:</strong>
+        <%= @usuario.tipo %>
+      </p>
+
+      <p>
+        <strong>Telefono:</strong>
+        <%= @usuario.telefono %>
+      </p>
+
+      <p>
+        <strong>Correo:</strong>
+        <%= @usuario.correo %>
+      </p>
+
+      <p>
+        <strong>Mascota:</strong>
+        <%= @usuario.mascota %>
+      </p>
+
+      <p>
+        <strong>Cedula:</strong>
+        <%= @usuario.cedula %>
+      </p>
+
+      <p>
+        <strong>Estado:</strong>
+        <%= @usuario.estado %>
+      </p>
+    </section>
+  </div>  
+ </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-md-6">
+      <%= link_to 'Editar', edit_usuario_path(@usuario), class: "btn btn-primary" %>
+    </div>
+    <div class="col-xs-6 col-md-6">
+      <%= link_to 'Atrás', usuarios_path, class: "btn btn-default"%>
+    </div>
+  </div>
+</div>

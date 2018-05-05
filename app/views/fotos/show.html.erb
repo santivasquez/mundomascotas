@@ -1,0 +1,14 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Imagen:</strong>
+    <%= @foto.imagen %>
+  </p>
+  <p>
+    <img src=<%= @foto.imagen %> width="400" height="300" />
+  </p>
+
+  <%= link_to 'Editar', edit_foto_path(@foto), class: "btn btn-warning"%> |
+  <%= link_to 'Atrás', menu_foto_path, class: "btn btn-default" %>
+</div>

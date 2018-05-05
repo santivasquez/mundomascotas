@@ -1,0 +1,1 @@
+$("#reserva_mascota_id").empty().append("<%= escape_javascript(render(:partial => @mascotas)) %>")

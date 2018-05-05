@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Atrás', mascota_path, class: "btn btn-default" %>
+<h1>Lista de vacunas para <%= @mascota.nombre %></h1>
+<%= link_to 'Nueva Vacuna', new_vacuna_path(@mascota), class: "btn btn-primary" %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th colspan="2">Opciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @vacunas.each do |vacuna| %>
+        <tr>
+          <td><%= vacuna.nombre %></td>
+          <td><%= vacuna.created_at %></td>
+          <td><%= link_to 'Mostrar', vacuna, class: "btn btn-default" %></td>
+          <td><%= link_to 'Borrar', vacuna, method: :delete, data: { confirm: '¿Está seguro?' }, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+</div>
+

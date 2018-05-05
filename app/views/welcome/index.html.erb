@@ -1,0 +1,1072 @@
+
+    <div id="page">
+      <header id="header" class="site-header" style="margin:0px;padding:0px">
+        <nav id="topbar" class="site-topbar visible-lg visible-md">
+          <div class="container">
+            <div class="row">
+              <!-- --><div class="col-sm-6"></div>
+              <div class="social-links col-sm-6">
+                <a href="https://instagram.com/mundomascotasllanogrande" onclick="irInstagram()"><i class="fa fa-instagram"></i></a>
+                <script>
+                  function irInstagram(){
+                    var evento = window.event;
+                    evento.preventDefault()?evento.preventDefault():evento.returValue=false;
+                    window.open("https://instagram.com/mundomascotasllanogrande");
+                  }
+                </script>
+                <!--a href="#"><i class="fa fa-twitter"></i></a-->
+                <!--a href="#"><i class="fa fa-google-plus"></i></a-->
+                <!--a href="#"><i class="fa fa-pinterest"></i></a-->
+               <% if logged_in? %>
+                  <a href="../admin"> <%= @current_user.nombre %></a>
+                  <br>
+                  <a href="../logout" >Salir</a>
+               <% else %> 
+                  <a href="../login">Login</a>
+               <% end %>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <nav id="navbar" class="site-navbar navbar navbar-static-top" role="navigation" style="">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+              </button>
+              <div><img src="images/logo.png" width="150" height="113"></div>
+            </div>
+              <a data-toggle="modal" data-target="#myModal" href=""><span class="canter-menu nav navbar-nav navbar-center">Reservas</span></a>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+              <ul id="navigation" class="nav navbar-nav navbar-right">
+                <li><a href="#header"><span class="canter-menu">Home</span></a></li>
+                <li><a href="#features"><span class="canter-menu">Qué Hacemos?</span></a></li>
+                <li><a href="#portfolio"><span class="canter-menu">Servicios</span></a></li>
+                <li><a href="#testimonials"><span class="canter-menu">Testimonios</span></a></li>
+                <li><a href="#pricing"><span class="canter-menu">Planes</span></a></li>
+                <li><a href="#contact"><span class="canter-menu">Escríbenos</span></a></li>
+                <!--<% unless logged_in? %>
+                  <li><a href="#login"><span class="canter-menu">Login</span></a></li>
+                <% else %>
+                    <li><a href="#administrar"><span class="canter-menu">Opciones</span></a></li>
+               <% end %>-->
+                
+              </ul>
+              <ul class="nav navbar-nav navbar-right" >
+                   <li><a href="../fotos"><span class="canter-menu" >Fotos</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+        
+        
+        <div id="myModal" class="modal fade">
+           
+    <div class="modal-dialog">
+         
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" ><b>Crea tu reserva <i>online!</i></b></h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <p>Haz tu reserva y nosotros cuidaremos de tu mascota</p>
+                    <p>Déjanos tus datos personales para darte un mejor servicio y muy pronto te contactarémos </p>
+                    
+                    <div class="main-action">
+                        <%=  form_for(:reserva, url:reservar_path) do |f| %>
+                            <div class="row">
+                            <div class="col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <%= f.label :nombre, class: 'sr-only' %>
+						            <%= f.text_field :nombre, class: 'form-control', placeholder: 'Nombre' %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :celular, class: 'sr-only' %>
+						            <%= f.telephone_field :celular, class: 'form-control', placeholder: 'Celular' %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :correo, class: 'sr-only' %>
+					                <%= f.email_field :correo, placeholder:"micorreo@ejemplo.com", class: 'form-control', :required => true  %>
+                                </div>
+                            </div>
+                    
+                   
+                  <div class="col-sm-6 col-xs-12">
+                    <div class="form-group container-fluid">
+                          <%= f.text_field :fecha_entrada, class: 'form-control', placeholder: 'Fecha de ingreso' %>
+                            <script>
+                                $(function () {
+                                    $.datepicker.setDefaults($.datepicker.regional["es"]);
+                                    $("#reserva_fecha_entrada").datepicker({
+                                        firstDay: 1
+                                    });
+                                });
+                            </script>
+                    
+                        <%= f.text_field :fecha_salida, class: 'form-control', placeholder: 'Fecha de salida' %>
+                    <script>
+                        $(function () {
+                            $.datepicker.setDefaults($.datepicker.regional["es"]);
+                            $("#reserva_fecha_salida").datepicker({
+                                firstDay: 1
+                            });
+                        });
+                        </script>
+                        </div>
+                        <div class="form-group">   
+                        <%= f.label :info_adicional, class: 'sr-only' %>
+                            <%= f.text_area :info_adicional, placeholder:"Cuéntanos sobre tu mascota", rows:"6", style: 'height: 100px', class: 'form-control' %>
+                        
+                        </div>
+                      
+                    </div>
+                    </div>
+                     
+                        
+                    </div>
+                </div>
+                <%= f.submit "Enviar", class:"btn btn-primary"  %>
+                        <% end %>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+            
+            
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+        
+
+        
+        
+
+      <main id="main" class="site-main" style="margin:0px;padding:0px">
+
+        <section id="carousel-1" class="carousel slide section-slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="item active" style="background: url(images/home1.jpg); background-repeat:no-repeat; background-size:100% 100%">
+             <div class="container"><img src="images/slide3.png" alt="First slide"></div>
+            </div>
+            <div class="item" style="background: url(images/home2.jpg); background-repeat:no-repeat; background-size: 100% 100%">
+              <div class="container"><img src="images/slide.png" alt="First slide"></div>
+            </div>
+            <div class="item" style="background: url(images/home3.jpg); background-repeat:no-repeat; background-size: 100% 100%;">
+              <div class="container"><img src="images/slide.png" alt="First slide"></div>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#carousel-1" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+          <a class="right carousel-control" href="#carousel-1" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+        </section>
+
+        <section class="section section-center section-cta">
+          <div class="container">
+            <h2 class="section-title"><span class="canter-bold-shadow-title4">Listo para probar nuestros servicios?</span></h2>
+            <p align="left"><span class="aw-conqueror">Mundo mascota está conformado por un grupo de profesionales en el área de medicina veterinaria y comportamiento animal. Quienes sentimos una inmensa pasión, respeto y amor por los animales. El concepto de nuestro proyecto fue pensado en los diferentes sub mundos que rodean a nuestros amigos de cuatro patas.</span></p>
+           
+            <div class="main-action row">
+              <div class="col-md-3 col-md-offset-3 col-sm-4 col-sm-offset-2"><span class="canter-bold"><a href="#pricing" class="smooth-scroll btn btn-lg btn-block btn-danger" style="font-size:50%">Promoción del mes</a> </span></div>
+              <div class="col-md-3 col-sm-4"><span class="canter-bold"><a href="#portfolio" class="smooth-scroll btn btn-lg btn-block btn-default" style="font-size:50%">Ver Servicios</a></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" class="section section-center section-hilite section-features">
+          <div class="container">
+            <h2 class="section-title"><span class="canter-bold-shadow-title4">Qué Hacemos?</span></h2>
+           
+            <img src="images/que-hacemos.png" width="5450" height="3406" class="img-responsive">
+        <!--     <div class="row">
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+              <div class="col-md-4 col-sm-6">
+                <div class="icon-wrap"><img src="http://placehold.it/128x128" alt=""></div>
+                <h4>Subheading</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+              </div>
+
+            </div> -->
+          </div>
+        </section>
+
+        <section id="portfolio" class="section section-portfolio">
+          <div class="container">
+            <h2 class="section-title"><span class="canter-bold-shadow-title4">Nuestros Servicios</span></h2>
+<!--             <ul id="filters">
+              <li><a href="#" data-filter="*">All</a></li>
+              <li>/</li>
+              <li><a href="#" data-filter=".web">Web Design</a></li>
+              <li>/</li>
+              <li><a href="#" data-filter=".graphic">Graphic Design</a></li>
+              <li>/</li>
+              <li><a href="#" data-filter=".photography">Photography</a></li>
+              <li>/</li>
+              <li><a href="#" data-filter=".motion">Motion Graphics</a></li>
+              <li>/</li>
+              <li><a href="#" data-filter=".branding">Branding</a></li>
+            </ul>
+
+ -->        <div class="portfolio-isotope row">
+              <article class="post col-md-4 col-sm-6 portfolio-item branding photography web">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal">
+                    <img src="images/servicios/colegio.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <article class="post col-md-4 col-sm-6 portfolio-item motion graphic">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal1">
+                    <img src="images/servicios/hotel.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <article class="post col-md-4 col-sm-6 portfolio-item branding web">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal2">
+                    <img src="images/servicios/salud.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <article class="post col-md-4 col-sm-10 portfolio-item photography graphic">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal3">
+                    <img src="images/servicios/belleza.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <article class="post col-md-4 col-sm-10 portfolio-item motion web">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal4">
+                    <img src="images/servicios/tienda.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <!--
+              <article class="post col-md-3 col-sm-6 portfolio-item branding graphic">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal5">
+                    <img src="images/servicios/diversion.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+              <article class="post col-md-3 col-sm-6 portfolio-item motion photography web">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal6">
+                    <img src="images/servicios/adopciones.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>-->
+              <article class="post col-md-4 col-sm-6 portfolio-item photography motion branding graphic">
+                <div class="entry-thumbnail">
+                  <a href="#" class="hover-effect" data-toggle="modal" data-target="#project-modal7">
+                    <img src="images/servicios/fotos.png" alt="" />
+                    <span class="overlay"><i class="fa fa-plus"></i></span>
+                  </a>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </section>
+        <!--script type="text/javascript">
+          var $container = $('.portfolio-isotope');
+
+          $container.isotope({
+            itemSelector : '.portfolio-item',
+            resizable: true,
+            resizesContainer: true
+          });
+        </script-->
+
+        <!-- Project Modal -->
+        <div class="modal fade" id="project-modal" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Colegio</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/colegio/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/colegio/imagen2.jpg"/></div>
+                        <div class="item"><img src="images/servicios/colegio/imagen3.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel" data-slide-to="1"></li>
+                        <li data-target="#project-thumbnail-carousel" data-slide-to="2"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <a data-dismiss="modal" class="btn btn-block btn-primary" onclick="window.location = '#pricing'">Conoce más</a>
+                      <ul class="list-unstyled project-info">
+                        <li>Pasaremos por tu amiguito a su casa.</li>
+                        <li>Consulta veterinaria gratuita.</li>
+                        <li>Desparasitación gratuita para todos los estudiantes c/ dos meses.</li>
+                      </ul>
+                    </div>
+                    <div class="col-md-8">
+                      <p style="text-align:justify">Todas las actividades que se realizan en el colegio son supervisadas por personal capacitado además de un médico veterinario que está de tiempo completo en Mundo mascotas. Podrás supervisar a tu mascota 24 horas al día mediante cámaras ubicadas en nuestras instalaciones y fotos publicadas en las redes sociales. Tenemos ruta escolar en una buseta adaptada especialmente para la seguridad y el bienestar de los perros.</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal  -->       
+ 
+         <!-- Project Modal 1 -->
+        <div class="modal fade" id="project-modal1" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Hotel</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-1" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/hotel/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/hotel/imagen2.jpg"/></div>
+                        <div class="item"><img src="images/servicios/hotel/imagen3.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-1" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-1" data-slide-to="1"></li>
+                        <li data-target="#project-thumbnail-carousel-1" data-slide-to="2"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-1" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-1" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <a data-dismiss="modal" class="btn btn-block btn-primary" onclick="window.location = '#pricing'">Conoce más</a>
+                      <!--ul class="list-unstyled project-info">
+                        <li><strong>Type</strong> <span class="pull-right">Web Design</span></li>
+                        <li><strong>Client</strong> <span class="pull-right">Google</span></li>
+                        <li><strong>Year</strong> <span class="pull-right">2014</span></li>
+                      </ul-->
+                    </div>
+                    <div class="col-md-8">
+                      <p style="text-align:justify;padding:0px;margin:0px">Programa diseñado para el completo disfrute con las mejores instalaciones para que nuestra mascota se sienta en su Mundo, en Mundo Mascotas.
+                        <br/><b>Caninos:</b>
+                      </p>
+                      <ul style="text-align:justify;padding:0px;margin:0px 0px 0px 15px;">
+                        <li>Nuestros huéspedes contarán con atención las 24 horas.</li>
+                        <li>Durante el día recibirán las mismas atenciones del colegio.</li>
+                        <li>Vale recordar que en nuestras instalaciones no permitimos que nuestras mascotas duerman en perreras fuera de la casa. Es por eso que contamos con cómodas habitaciones dentro del hotel.</li>
+                      </ul>
+                      <p style="text-align:justify;padding:0px;margin:0px"><b>Felinos:</b></p>
+                      <ul style="text-align:justify;padding:0px;margin:0px 0px 0px 15px;">
+                        <li>Nuestros huéspedes contarán con atención las 24horas.</li>
+                        <li>Los gatos son animales independientes y solitarios, pensando en esto mundo mascotas generó habitaciones individuales para que ellos se sientan tranquilos. Cada habitación cuenta con una caja de arena para sus necesidades, escaleras, rascador de uñas y una serie de juegos para incentivar la actividad y la diversión.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 1 -->
+
+<!-- Project Modal 2 -->
+        <div class="modal fade" id="project-modal2" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Salud</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-2" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/salud/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/salud/imagen2.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-2" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-2" data-slide-to="1"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-2" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-2" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <ul style="text-align:justify;padding:0px;margin:0px 0px 0px 15px">
+                        <li>Odontología: Profilaxis, remoción de caries y obturación estética en resina, tratamientos de endodoncia y tratamientos periodontales en beneficio de la salud oral de nuestros mejores amigos.</li>
+                        <li>Consulta Veterinaria.</li>
+                        <li>Consulta Veterinaria Especializada: Ortopedia, oftalmología, dermatología y fisioterapia.</li>
+                        <li>Vacunación</li>
+                        <li>Desparasitación</li>
+                        <li>Laboratorio Clínico</li>
+                        <li>Rayos X</li>
+                        <li>Ecografía</li>
+                        <li>Cirugías</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 2 -->
+
+<!-- Project Modal 3 -->
+        <div class="modal fade" id="project-modal3" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Belleza</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-3" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/belleza/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/belleza/imagen2.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-3" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-3" data-slide-to="1"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-3" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-3" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <p style="text-align:justify;">
+                        <b>PELUQUERIA</b></br>Nuestros amigos de 4 patas requieren de un servicio de baño y peluquería constante para controlar parásitos externos y disminuir malos olores en casa. Contamos con implementos a la vanguardia y personal altamente calificado.<br/><b>SPA</b><br/>Nuestro spa está inspirado en un ambiente zen donde se pretende generar una atmosfera de tranquilidad. Se ofrecerán masajes de relajación con aromaterapia. Al igual que las personas un masaje para las mascotas puede ser una experiencia relajante. Un buen masaje trae beneficios para el sistema circulatorio y la musculatura además puede ayudarlos a que el animal se sienta más tranquilo y mejore la ansiedad.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 3 -->
+
+<!-- Project Modal 4 -->
+        <div class="modal fade" id="project-modal4" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Tienda</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-4" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/tienda/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/tienda/imagen2.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-4" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-4" data-slide-to="1"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-4" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-4" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <p style="text-align:justify;padding:0px;margin:0px">En nuestro pet shop encontraras:</p>
+                      <ul style="text-align:justify;padding:0px;margin:0px 0px 0px 15px">
+                        <li>Concentrados de diferentes marcas.</li>
+                        <li>Snack (huesos naturales y sintéticos, galletas, alimentos húmedos, cabanos).</li>
+                        <li>Accesorios (tradillas, comederos, camas, ropa, juguetes, placas nombre).</li>
+                        <li>Elementos aseo (Shampoo, jabones, baño seco, cortaúñas, cepillos).</li>
+                        <li>Fármacos veterinarios.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 4 -->
+
+<!-- Project Modal 5 -->
+        <div class="modal fade" id="project-modal5" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Diversión</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-5" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/diversion/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/diversion/imagen2.jpg"/></div>
+                        <div class="item"><img src="images/servicios/diversion/imagen3.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-5" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-5" data-slide-to="1"></li>
+                        <li data-target="#project-thumbnail-carousel-5" data-slide-to="2"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-5" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-5" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <ul style="text-align:justify;padding:0px;margin:0px 0px 0px 15px">
+                        <li>Celebración de cumpleaños en la zona de la piscina.</li>
+                        <li>Caminatas caninas.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 5 -->
+
+<!-- Project Modal 6 -->
+        <div class="modal fade" id="project-modal6" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Mundo Adopción</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-6" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/adopcion/imagen1.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-6" data-slide-to="0" class="active"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-6" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-6" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <p style="text-align:justify;">Difundimos, rescatamos, rehabilitamos y ponemos en adopción perros y gatos. Queremos poner un granito de arena ayudando al bienestar de los animales menos favorecidos.</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 6 -->
+
+<!-- Project Modal 7 -->
+        <div class="modal fade" id="project-modal7" tabindex="-1" role="dialog" aria-labelledby="project-modal-label" aria-hidden="true">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="project-modal-label">Nuestras instalaciones</h4>
+              </div>
+              <div class="modal-body">
+                <article class="single-project">
+                  <div class="project-thumbnail">
+                    <div id="project-thumbnail-carousel-7" class="carousel slide" data-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="item active"><img src="images/servicios/fotos/imagen1.jpg"/></div>
+                        <div class="item"><img src="images/servicios/fotos/imagen2.jpg"/></div>
+                        <div class="item"><img src="images/servicios/fotos/imagen3.jpg"/></div>
+                      </div>
+                      <ol class="carousel-indicators">
+                        <li data-target="#project-thumbnail-carousel-7" data-slide-to="0" class="active"></li>
+                        <li data-target="#project-thumbnail-carousel-7" data-slide-to="1"></li>
+                        <li data-target="#project-thumbnail-carousel-7" data-slide-to="2"></li>
+                      </ol>
+                      <a class="left carousel-control" href="#project-thumbnail-carousel-7" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+                      <a class="right carousel-control" href="#project-thumbnail-carousel-7" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8" style="width:90%">
+                      <p style="text-align:justify;">Conocemos la importancia que tiene tu mascota en el hogar y sabemos lo importante que es para ti no dejarlo solo en la casa mientras cumplimos con nuestros quehaceres diarios.</p>
+                      <p style="text-align:justify;">Es por esto que creamos un mundo donde nuestros amigos de 4 patas tendrán la oportunidad de divertirse, alimentarse, socializar descansar, recibir amor y tener rutinas de entrenamiento diario que ayudaran a liberar la energía de tu mascota. Las instalaciones de mundo mascotas están divididas para satisfacer las necesidades de cada perrito según su tamaño y su personalidad. Contamos con una zona de recreación campestre con juegos exteriores, piscina y espacios generosos cercados en su totalidad.</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </div>
+<!-- End Project Modal 7 -->
+
+
+        <section id="testimonials" class="section section-center section-hilite section-testimonial">
+          <div class="container">
+            <h2 class="section-title"><span class="canter-bold-shadow-title4">Qué dicen nuestros clientes?</span></h2>
+            <i class="fa fa-quote-left fa-3x"></i>
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item active">
+                  <blockquote>
+                    <p>Nunca imagine que existiera un servicio tan profesional y completo. Gracias de verdad por cuidar de mi peludo</p><br>
+                    <small>Juliana Pérez - Rocky</small>
+                  </blockquote>
+                </div>
+                
+                <div class="item">
+                  <blockquote>
+                    <p>Mi amiguito me obedece!. No lo puedo creer. Gracias mundo mascotas llanogrande por existir y cruzarse en nuestras vidas</p><br>
+                    <small>Laura Giraldo - Botija</small>
+                  </blockquote>
+                </div>
+
+                <div class="item">
+                  <blockquote>
+                    <p>Pensar que mi perrito se durmiera de lo cansado que estaba?, no estaba ni en mis sueños. Definitivamente ustedes son los mejores entrenadores que existen; además, mi perro tiene musculitos.</p>
+                    <small>Camilo Cifuentes - Batman</small>
+                  </blockquote>
+                </div>
+
+              </div>
+
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"><img src="images/test01.png" width="64" height="64" alt="" class="img-circle"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"><img src="images/test02.png" width="64" height="64" alt="" class="img-circle"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"><img src="images/test03.png" width="64" height="64" alt="" class="img-circle"></li>
+              </ol>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="pricing" class="section section-center section-pricing">
+            <div class="container">
+                 <h2 class="section-title"><span class="canter-bold-shadow-title4">Planes Dentro de Nuestros Mundos</span></h2>
+                <div class="pricing-table">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="panel panel-primary">
+                                <header class="panel-heading">
+                                    <h1><span class="h1-canter">Hotel y Guardería</span></h1>
+                                </header>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                        <% amigo = true %>
+                                        <% @planes.each do |plan| %>
+                                          <% if plan.tipo == "Hotel y guardería" %>
+                                          <% if amigo %>
+                                            <tr><td><%= plan.texto %></td></tr>
+                                            <% else %>
+                                              <tr class="active"><td><%= plan.texto %></td></tr>
+                                              <% amigo = !amigo %>
+                                            <% end %>
+                                          <% end %> 
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--footer class="panel-footer"><a href="#" class="btn btn-primary">BONOS</a></footer-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="panel panel-default">
+                              <header class="panel-heading">
+                                    <h1><span class="h1-canter">Colegio</span></h1>
+                              </header>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <% amigo = true %>
+                                        <% @planes.each do |plan| %>
+                                          <% if plan.tipo == "Colegio" %>
+                                          <% if amigo  == true %>
+                                            <tr><td><%= plan.texto %></td></tr>
+                                            <% else %>
+                                              <tr class="active"><td><%= plan.texto %></td></tr>
+                                              <% amigo = !amigo %>
+                                            <% end %>
+                                          <% end %> 
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--footer class="panel-footer"><a href="#" class="btn btn-default">BONOS</a></footer-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="panel panel-default">
+                                <header class="panel-heading">
+                                    <h1><span class="h1-canter">Peluquería y Spa</span></h1>
+                              </header>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                            <% amigo = true %>
+                                        <% @planes.each do |plan| %>
+                                          <% if plan.tipo == "Peluquería y Spa" %>
+                                          <% if amigo %>
+                                            <tr><td><%= plan.texto %></td></tr>
+                                            <% else %>
+                                              <tr class="active"><td><%= plan.texto %></td></tr>
+                                              <% amigo = !amigo %>
+                                            <% end %>
+                                          <% end %> 
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--footer class="panel-footer"><a href="#" class="btn btn-default">BONOS</a></footer-->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="panel panel-default">
+                                <header class="panel-heading">
+                                    <h1><span class="h1-canter">Día de Sol Gratis!</span></h1>
+                              </header>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tbody>
+                                           <% amigo = true %>
+                                        <% @planes.each do |plan| %>
+                                          <% if plan.tipo == "Día de Sol" %>
+                                          <% if amigo %>
+                                            <tr><td><%= plan.texto %></td></tr>
+                                            <% else %>
+                                              <tr class="active"><td><%= plan.texto %></td></tr>
+                                              <% amigo = !amigo %>
+                                            <% end %>
+                                          <% end %> 
+                                        <% end %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--footer class="panel-footer"><a href="#" class="btn btn-default">BONOS</a></footer-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="team" class="section section-center section-hilite section-team">
+            <div class="container">
+                <h2 class="section-title"><span>Our Funny Team</span></h2>
+                <div class="row">
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>Rihanna</h5>
+                    </div>
+                    
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>Marry</h5>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>Ronaldo</h5>
+                    </div>
+                    
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>Jackie Lord</h5>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>David Beckham</h5>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <img src="http://placehold.it/300x300">
+                        <h5>John Doe</h5>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- <section id="blog" class="section section-blog">
+          <div class="container">
+            <h2 class="section-title"><span>Our Blog</span></h2>
+            <div class="row">
+              <div class="col-md-6">
+                <article class="hentry post">
+                  <div class="row">
+                    <div class="entry-thumbnail col-lg-4 col-md-5 col-sm-4">
+                      <a href="#" class="hover-effect">
+                        <img src="http://placehold.it/165x165" alt="" />
+                        <span class="overlay"><i class="fa fa-plus"></i></span>
+                      </a>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-8">
+                      <header class="entry-header">
+                        <h2 class="entry-title"><a href="#">Sample blog title</a></h2>
+                        <div class="entry-meta">By <a href="#">Jackie Lord</a> in <a href="#">Category</a></div>
+                      </header>
+                      <div class="entry-content">
+                        <p>Pellentesque eleifend amet scelerisque convallis. Aenean eget metus non erat suscipit accumsan.</p>
+                        <a href="#" class="more"><span class="btn btn-primary">Continue Reading</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <div class="col-md-6">
+                <article class="hentry post">
+                  <div class="row">
+                    <div class="entry-thumbnail col-lg-4 col-md-5 col-sm-4">
+                      <a href="#" class="hover-effect">
+                        <img src="http://placehold.it/165x165" alt="" />
+                        <span class="overlay"><i class="fa fa-plus"></i></span>
+                      </a>
+                    </div>
+                    <div class="col-lg-8 col-md-7 col-sm-8">
+                      <header class="entry-header">
+                        <h2 class="entry-title"><a href="#">Sample blog title</a></h2>
+                        <div class="entry-meta">By <a href="#">Jackie Lord</a> in <a href="#">Category</a></div>
+                      </header>
+                      <div class="entry-content">
+                        <p>Pellentesque eleifend amet scelerisque convallis. Aenean eget metus non erat suscipit accumsan.</p>
+                        <a href="#" class="more"><span class="btn btn-primary">Continue Reading</span></a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+ -->
+       <!-- <section id="clients" class="section section-hilite section-our-clients">
+          <div class="container">
+            <h2 class="section-title"><span>Our Clients</span></h2>
+            <div class="row">
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                <a href="#"><img src="http://placehold.it/165x80" alt="" /></a>
+              </div>
+            </div>
+          </div>
+        </section>
+ -->
+        <section id="contact" class="section section-center section-contact">
+          <div class="container">
+            <h2 class="section-title"><span class="canter-bold-shadow-title4">Escríbenos</span></h2>
+            <p>Si deseas conocer mas información, recibir nuestro portafolio de servicios, o que algún de nuestros asesores te contacte. Por favor escríbenos.</p>
+            <div class="main-action">
+              <%=  form_for(:correo, url:correo_path) do |f| %>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                       <%= f.label :asunto, class: 'sr-only' %>
+						<%= f.text_field :asunto, class: 'form-control', placeholder: 'Asunto' %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.label :nombre, class: 'sr-only' %>
+					  <%= f.text_field :nombre, class: 'form-control', placeholder: 'Nombre' %>
+                    </div>
+                    <div class="form-group">
+                     <%= f.label :correo, class: 'sr-only' %>
+					 <%= f.email_field :correo, placeholder:"micorreo@ejemplo.com", class: 'form-control' %>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        <%= f.label :mensaje, class: 'sr-only' %>
+                        <%= f.text_area :mensaje, placeholder:"Escriba aqui su mensaje", rows:"6", style: 'height: 100px', class: 'form-control' %>
+                    </div>
+                  </div>
+                </div>
+                 <%= f.submit "Enviar", class:"btn btn-primary"  %>
+              <% end %>
+            </div>
+          </div>
+        </section>
+        <!--<% unless logged_in? %>
+          <section id="login" class="section section-center section-contact">
+            <div class="container main-action">
+              <h2 class="section-title"><span class="canter-bold-shadow-title4">Iniciar Sesión</span></h2>
+                  <a class="btn btn-primary" href="../login">Iniciar Sesión</a>
+              </div>
+          </section>
+          <% else %>
+             <section id="administrar" class="section section-center section-contact">
+            <div class="container main-action">
+              <h2 class="section-title"><span class="canter-bold-shadow-title4">Administración</span></h2>
+                  <a class="btn btn-primary" href="../admin">Opciones</a>
+              </div>
+          </section>
+        <% end %>-->
+      </main>
+
+      <footer id="footer" class="site-footer">
+        <div class="container">
+
+          <div id="sidebar-footer-1">
+            <div class="row">
+
+              <aside class="widget col-md-3 col-sm-6">
+                <h5 class="widget-title"><span class="canter-light-footer">Acerca de Nosotros</span></h5>
+                <p>Mundo mascota está conformado por un grupo de profesionales en el área de medicina veterinaria y comportamiento animal. Quienes sentimos una inmensa pasión, respeto y amor por los animales.</p>
+              </aside>
+
+              <aside class="widget col-md-3 col-sm-6">
+                <h5 class="widget-title"><span class="canter-light-footer">Ubícanos</span></h5>
+                <div class="textwidget">
+                  <div class="adr">
+                    <div class="street-address">Km 2, Sector Amalita</div>
+                    <span class="locality">Llanogrande</span><span class="country-name"></span>
+                  </div>
+                  <div>Contiguo al Centro<span class="tel"></span></div>
+                  <div>Comercial Plaza Linares<a class="url" href="http://www.yoarts.com"></a></div>
+                </div>
+              </aside>
+
+              <aside class="widget col-md-3 col-sm-6">
+                <h5 class="widget-title"><span class="canter-light-footer">Necesitas Ayuda?</span></h5>
+                <p>Escríbenos a<br>
+                  <a href="mailto:info@mundomascotas.club">infomundomascotas@une.net.co</a><br>
+                  Teléfono: (4) 537 25 05<br>
+                Celular: 315 289 43 89</p>
+              </aside>
+
+              <aside class="widget col-md-3 col-sm-6">
+                <!-- <h5 class="widget-title"><span class="canter-light-footer">A un Toque!</span></h5>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Tu Email">
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" type="button"><i class="fa fa-arrow-right"></i></button>
+                  </span>
+                </div> -->
+                <ul class="social-links">
+                  <li><a href="https://instagram.com/mundomascotasllanogrande" onclick="irInstagram()"><i class="fa fa-instagram"></i></a></li>
+                  <!--li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                  <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                  <li><a href="#"><i class="fa fa-pinterest"></i></a></li-->
+                </ul>
+              </aside>
+
+            </div>
+          </div>
+
+          <!--div id="sidebar-footer-2">
+            <div class="row">
+
+              <aside class="widget col-sm-6">
+                <h5 class="widget-title"></h5>
+                <div class="tweet"><span class="widget-title">Copyright Mundo Mascotas Llano Grande.<br>
+                Todos los derechos reservados 2015</span></div>
+              </aside>
+
+              <aside class="widget widget_flickr col-sm-6">
+                <h5 class="widget-title">Latest Photos</h5>
+                <a href="#" class="hover-effect"><img src="http://placehold.it/100x100" /><span class="overlay"><i class="fa fa-plus"></i></span></a>
+                <a href="#" class="hover-effect"><img src="http://placehold.it/100x100" /><span class="overlay"><i class="fa fa-plus"></i></span></a>
+                <a href="#" class="hover-effect"><img src="http://placehold.it/100x100" /><span class="overlay"><i class="fa fa-plus"></i></span></a>
+              </aside>
+
+            </div>
+          </div-->
+
+          <div class="copyright">
+            <p>© 2016 Mundo Mascotas Llano Grande</p></div>
+            <p>© 2016 By: Platino Software</p></div>
+        </div>
+      </footer>
+    </div>
+
+    <div class="scroll-to-top" data-spy="affix" data-offset-top="200"><a href="#page" class="smooth-scroll"><i class="fa fa-arrow-up"></i></a></div>

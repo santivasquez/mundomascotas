@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lista de Mascotas</h1>
+<%= link_to 'Nueva mascota', new_mascotum_path, class: "btn btn-primary" %>
+<div class="table-responsive">
+    <table class="table">
+  <thead>
+    <tr>
+      <th>Número de chip</th>
+      <th>Nombre</th>
+      <th>Dueño</th>
+      <th>Entrada</th>
+      <th>Salida</th>
+      <th>Vacunas</th>
+      <th>Raza</th>
+      <th>Edad</th>
+      <th>Estado</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mascota.each do |mascotum| %>
+      <tr>
+        <td><%= mascotum.id_Mas %></td>
+        <td><%= mascotum.nombre %></td>
+        <td><%= dueno_correo(mascotum.dueño) %></td>
+        <td><%= mascotum.entrada %></td>
+        <td><%= mascotum.salida %></td>
+        <td><%= vacunas_texto(mascotum.vacunas) %></td>
+        <td><%= mascotum.raza %></td>
+        <td><%= mascotum.edad %></td>
+        <td><%= mascotum.estado %></td>
+        <td><%= link_to 'Mostrar', mascotum, class: "btn btn-default" %></td>
+        <td><%= link_to 'Editar', edit_mascotum_path(mascotum), class: "btn btn-warning" %></td>
+        <td><%= link_to 'Borrar', mascotum, method: :delete, data: { confirm: '¿Está seguro?' }, class: "btn btn-danger" %></td>
+        <td><%= link_to 'Vacunas', vacunas_path(mascotum), class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

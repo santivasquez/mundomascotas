@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="span3 well">
+        <h1 class="text-center">Nueva Vacuna para <%= @mascota.nombre %></h1>
+
+        <%= render 'form' %>
+        <br>
+        <%= link_to 'Back', vacunas_path(@mascota), class: 'btn btn-default' %>
+    </div>
+</div>

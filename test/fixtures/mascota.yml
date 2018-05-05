@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_Mas: MyString
+  nombre: MyString
+  dueño: 1
+  entrada: MyString
+  salida: MyString
+  vacunas: false
+  raza: MyString
+  edad: 1
+  estado: MyString
+
+two:
+  id_Mas: MyString
+  nombre: MyString
+  dueño: 1
+  entrada: MyString
+  salida: MyString
+  vacunas: false
+  raza: MyString
+  edad: 1
+  estado: MyString
